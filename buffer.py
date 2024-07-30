@@ -1,6 +1,6 @@
 import torch as t
 from nnsight import LanguageModel
-from .config import DEBUG
+from config import DEBUG
 
 if DEBUG:
     tracer_kwargs = {'scan' : True, 'validate' : True}

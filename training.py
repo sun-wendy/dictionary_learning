@@ -3,10 +3,10 @@ Training dictionaries
 """
 
 import torch as t
-from .dictionary import AutoEncoder
+from dictionary import AutoEncoder
 import os
 from tqdm import tqdm
-from .trainers.standard import StandardTrainer
+from trainers.standard import StandardTrainer
 import wandb
 import json
 # from .evaluation import evaluate
@@ -18,7 +18,7 @@ def trainSAE(
                 'trainer' : StandardTrainer,
                 'dict_class' : AutoEncoder,
                 'activation_dim' : 512,
-                'dictionary_size' : 64*512,
+                'dict_size' : 64*512,
                 'lr' : 1e-3,
                 'l1_penalty' : 1e-1,
                 'warmup_steps' : 1000,
