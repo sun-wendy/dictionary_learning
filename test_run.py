@@ -1,4 +1,5 @@
 from nnsight import LanguageModel
+from datasets import load_dataset
 from buffer import ActivationBuffer
 from training import trainSAE
 from trainers.standard import StandardTrainer
@@ -13,11 +14,15 @@ activation_dim = 512 # output dimension of the MLP
 dictionary_size = 16 * activation_dim
 
 # data much be an iterator that outputs strings
-data = iter([
-    'This is some example data',
-    'In real life, for training a dictionary',
-    'you would need much more data than this'
-])
+# data = iter([
+#     'This is some example data',
+#     'In real life, for training a dictionary',
+#     'you would need much more data than this'
+# ])
+
+dataset = load_dataset("openwebtext", streaming=True)
+data = iter(dataset["train"].shuffle(seed=42).map(lambda x: x["text"]))
+
 buffer = ActivationBuffer(
     data,
     model,
