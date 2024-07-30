@@ -13,15 +13,8 @@ submodule = model.gpt_neox.layers[1].mlp # layer 1 MLP
 activation_dim = 512 # output dimension of the MLP
 dictionary_size = 16 * activation_dim
 
-# data much be an iterator that outputs strings
-# data = iter([
-#     'This is some example data',
-#     'In real life, for training a dictionary',
-#     'you would need much more data than this'
-# ])
-
-dataset = load_dataset("openwebtext", streaming=True)
-data = iter(dataset["train"].shuffle(seed=42).map(lambda x: x["text"]))
+dataset = load_dataset("stas/openwebtext-10k", split="train")
+data = iter(dataset["text"])
 
 buffer = ActivationBuffer(
     data,
