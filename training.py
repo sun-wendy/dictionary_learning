@@ -3,10 +3,10 @@ Training dictionaries
 """
 
 import torch as t
-from .dictionary import AutoEncoder
+from dictionary import AutoEncoder
 import os
 from tqdm import tqdm
-from .trainers.standard import StandardTrainer
+from trainers.standard import StandardTrainer
 import wandb
 import json
 # from .evaluation import evaluate
